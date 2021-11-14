@@ -1,0 +1,7 @@
+@media screen and (max-width: 480px) {
+    .qlogo{text-align:center;}
+    .qlogo img{width:60%;}
+.qsearch input[type="text"]{width:80%;}
+.qsearch{text-align:center !important;}
+#cssmenu{margin:0 !important;}
+    }

@@ -1,0 +1,198 @@
+<div class="container-fluid">
+            <div class="row-fluid">
+            <?php $this->load->view('backend/includes/leftnav');?>
+                
+                <!--/span-->
+                <div class="span9" id="content">
+                <div class="row-fluid">
+                         <?php $this->load->view('backend/includes/message');?>
+                        	<div class="navbar">
+                            	<div class="navbar-inner">
+	                                <ul class="breadcrumb">
+	                                    <i class="icon-chevron-left hide-sidebar"><a href='#' title="Hide Sidebar" rel='tooltip'>&nbsp;</a></i>
+	                                    <i class="icon-chevron-right show-sidebar" style="display:none;"><a href='#' title="Show Sidebar" rel='tooltip'>&nbsp;</a></i>
+	                                    <li>
+	                                        <a href="<?php echo site_url($this->config->item('backend').'/home')?>">Dashboard</a> <span class="divider">/</span>	
+	                                    </li>
+	                                    <li>
+	                                        <a href="<?php echo site_url($this->controller)?>"><?php echo $this->title_plural?></a> <span class="divider">/</span>	
+	                                    </li>                                                                                
+	                                    <li class="active"><?php echo $title; ?></li>
+	                                </ul>
+                            	</div>
+                        	</div>
+                    	</div>
+					<div class="row-fluid">
+                        <!-- block -->
+                        <div class="block">
+                            <div class="navbar navbar-inner block-header">
+                                <div class="muted pull-left"><?php echo $title;?></div>
+                            </div>
+                            <div class="block-content collapse in">
+                                <div class="span12">
+<?php
+if($id)
+{
+?>                                
+                                     <form class="form-horizontal" name="" method="post" action="<?php echo site_url($this->controller.'/edit/'.$id);?>" enctype="multipart/form-data">
+<?php
+}
+else
+{
+?>
+                                    <form class="form-horizontal" name="" method="post" action="<?php echo site_url($this->controller.'/add');?>" enctype="multipart/form-data">
+<?php
+}
+?>
+                                      <fieldset>
+                                        <!--<legend>Edit</legend>-->
+        								<div class="control-group">
+                                          <label class="control-label" for="Role"><span class="error">*</span> Role</label>
+                                          <div class="controls">
+											<select id="role" name="role" class="span6">
+                                              <option value="Author_Reviewer_Editor" <?php if("Author_Reviewer_Editor" === set_value('role',isset($data['role'])?$data['role']:'')) { echo 'selected="selected"'; } ?>>Author/Reviewer/Editor</option>
+                                            </select>
+                                          </div>
+                                        </div>                                        
+                                        <div class="control-group">
+                                          <label class="control-label" for="name"><span class="error">*</span> Name </label>
+                                          <div class="controls">
+                                            <input class="input-xlarge span6" id="name" name="name" type="text" placeholder="Name" value="<?php echo set_value('name',isset($data['name'])?$data['name']:''); ?>">
+                                            <?php echo form_error('name','<span class="error-advise">','</span>'); ?>
+                                          </div>
+                                        </div>
+                                        <div class="control-group">
+                                          <label class="control-label" for="affiliation"><span class="error">*</span> Affiliation </label>
+                                          <div class="controls">
+                                            <input class="input-xlarge span6" id="affiliation" name="affiliation" type="text" placeholder="Affiliation" value="<?php echo set_value('affiliation',isset($data['affiliation'])?$data['affiliation']:''); ?>">
+                                            <?php echo form_error('affiliation','<span class="error-advise">','</span>'); ?>
+                                          </div>
+                                        </div>
+                                        <div class="control-group">
+                                          <label class="control-label" for="username"><span class="error">*</span> Username </label>
+                                          <div class="controls">
+                                            <input class="input-xlarge span6" id="username" name="username" type="text" placeholder="Username" value="<?php echo set_value('username',isset($data['username'])?$data['username']:''); ?>">
+                                            <?php echo form_error('username','<span class="error-advise">','</span>'); ?>
+                                          </div>
+                                        </div>
+                                        <div class="control-group">
+                                          <label class="control-label" for="contact_no"><span class="error">*</span> Contact No </label>
+                                          <div class="controls">
+                                            <input class="input-xlarge span6" id="contact_no" name="contact_no" type="text" placeholder="Contact No" value="<?php echo set_value('contact_no',isset($data['contact_no'])?$data['contact_no']:''); ?>">
+                                            <?php echo form_error('username','<span class="error-advise">','</span>'); ?>
+                                          </div>
+                                        </div>
+                                        
+                                        <div class="control-group">
+                                          <label class="control-label" for="country"><span class="error">*</span> Country </label>    
+                                          <div class="controls">
+											<select id="country" name="country" class="span6">
+                                              <option value="" >Select</option>
+<?php if(!empty($countries))
+{
+	foreach($countries as $value)
+	{
+?>                                              
+                                              <option value="<?php echo $value['Id'];?>" <?php if($value['Id'] == set_value('country',isset($data['country'])?$data['country']:'')) { echo 'selected="selected"'; } ?>><?php echo $value['name'];?></option>
+<?php
+	}
+}
+?>                                               
+                                            </select>
+                                            <?php echo form_error('country','<span class="error-advise">','</span>'); ?> 
+                                          </div>
+                                        </div>    
+                                        <div class="control-group">
+                                          <label class="control-label" for="specilization_area1"><span class="error">*</span> Primary Specilization </label>
+                                          <div class="controls">
+                                            <input class="input-xlarge span6" id="specilization_area1" name="specilization_area1" type="text" placeholder="Primary Specilization" value="<?php echo set_value('specilization_area1',isset($data['specilization_area1'])?$data['specilization_area1']:''); ?>">
+                                            <?php echo form_error('specilization_area1','<span class="error-advise">','</span>'); ?>
+                                          </div>
+                                        </div>     
+                                        <div class="control-group">
+                                          <label class="control-label" for="specilization_area2"><span class="error">*</span> Secondary Specilization </label>
+                                          <div class="controls">
+                                            <input class="input-xlarge span6" id="specilization_area2" name="specilization_area2" type="text" placeholder="Secondary Specilization" value="<?php echo set_value('specilization_area2',isset($data['specilization_area2'])?$data['specilization_area2']:''); ?>">
+                                            <?php echo form_error('specilization_area2','<span class="error-advise">','</span>'); ?>
+                                          </div>
+                                        </div>
+                                        <div class="control-group">
+                                        <label class="control-label" for="password">Password</label>
+                                        <div class="controls">
+                                        <input class="input-xlarge span6" id="password" name="password" type="password" placeholder="Password" value="<?php echo set_value('password'); ?>">
+                                        <?php echo form_error('password','<span class="error-advise">','</span>'); ?>
+                                        </div>
+                                        </div>     
+                                        <div class="control-group">
+                                        <label class="control-label" for="password">Confirm Password</label>
+                                        <div class="controls">
+                                        <input class="input-xlarge span6" id="cpassword" name="cpassword" type="password" placeholder="Confirm Password" value="<?php echo set_value('cpassword'); ?>">
+                                        <?php echo form_error('password','<span class="error-advise">','</span>'); ?>
+                                        </div>
+                                        </div>                                        <div class="control-group">
+                                          <label class="control-label" for="name"><span class="error">*</span> Upload CV </label>
+                                          <div class="controls">
+                                            <input class="input-xlarge span6" id="ms_word_file" name="ms_word_file" type="file" placeholder="Upload CV" value="<?php echo set_value('ms_word_file',isset($data['ms_word_file'])?$data['ms_word_file']:''); ?>">
+<?php
+if($id)
+{
+?>                                                 
+                                            <a href="<?php echo base_url().'media/user/cv/'.$data['ms_word_file']; ?>" title="<?php echo $data['ms_word_file'];?>"><?php echo $data['ms_word_file']?></a>
+<?php
+}
+?>                                            
+                                            <?php echo form_error('ms_word_file','<span class="error-advise">','</span>'); ?>
+                                          </div>
+                                        </div>
+                                        <div class="control-group">
+                                          <label class="control-label" for="newsletter">Newsletter</label>
+                                          <div class="controls">
+											<select id="newsletter" name="newsletter" class="span6">
+                                              <option value="1" <?php if("1" === set_value('newsletter',isset($data['newsletter'])?$data['newsletter']:'')) { echo 'selected="selected"'; } ?>>Active</option>
+                                              <option value="0" <?php if("0" === set_value('newsletter',isset($data['newsletter'])?$data['newsletter']:'')) { echo 'selected="selected"'; } ?>>Inactive</option>
+                                            </select>
+                                          </div>
+                                        </div>
+                                    
+<?php 
+	if($this->action_status)
+	{
+?>                                        
+                                        <div class="control-group">
+                                          <label class="control-label" for="publish">Publish</label>
+                                          <div class="controls">
+											<select id="publish" name="publish" class="span6">
+                                              <option value="1" <?php if("1" === set_value('publish',isset($data['publish'])?$data['publish']:'')) { echo 'selected="selected"'; } ?>>Active</option>
+                                              <option value="0" <?php if("0" === set_value('publish',isset($data['publish'])?$data['publish']:'')) { echo 'selected="selected"'; } ?>>Inactive</option>
+                                            </select>
+                                          </div>
+                                        </div>                                                                              
+<?php 
+	}
+?>                                        
+                                        <div class="form-actions">
+                                          <button type="submit" class="btn btn-primary" name="submit" id="submit" value="submit">Save changes</button>
+                                          <button type="reset" class="btn" onclick="parent.location.href='<?php echo site_url($this->controller); ?>'">Cancel</button>
+                                        </div>
+                                      </fieldset>
+                                    </form>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /block -->
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <?php $this->load->view('backend/includes/footer');?>
+        </div>
+        <!--/.fluid-container-->
+		<script src="<?php echo base_url(); ?>assets/themes/backend/vendors/ckeditor/ckeditor.js"></script>
+		<script src="<?php echo base_url(); ?>assets/themes/backend/vendors/ckeditor/adapters/jquery.js"></script>
+        
+<script>
+        $(function() {
+				$( 'textarea.ckeditor_full' ).ckeditor({width:'98%', height: '150px'});
+        });
+</script>                
